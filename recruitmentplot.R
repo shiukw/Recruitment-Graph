@@ -22,7 +22,7 @@ ordered_dates <- c("Jan-18",
                    "Sep-18",
                    "Oct-18",
                   "Nov-18",
-                   "Dec-18")
+                   "Dec-18") 
 
 rc_total$date <- ordered(rc_total$date, levels = ordered_dates)
 rc_site$date <- ordered(rc_site$date, levels = ordered_dates)
