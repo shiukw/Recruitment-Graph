@@ -1,5 +1,5 @@
 # recruitment_graph
-R code for creating a recruitment graph for your research study
+R code for creating a recruitment graph combined with a table of recruitment numbers for your research study
 
 READ ME ON HOW TO SET UP YOUR DATA IN THE CSV FILES SO THAT THE R CODE WORKS:
 
