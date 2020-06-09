@@ -3,6 +3,8 @@ R code for creating a recruitment graph for your research study
 
 READ ME ON HOW TO SET UP YOUR DATA IN THE CSV FILES SO THAT THE R CODE WORKS:
 
+The R code uses information from the two .csv files below:
+
 // recruitmenttotal.csv //
 Column A (type) distiniguishes between numbers that were expected (e.g., based on protocol) and observed (i.e., what you actually recruited)
 Column B (date) is simply the month of recruitment; presently it is in MMM-YY but you can change it to the full spelling of the month if you want. But the shortform keeps things tidy
