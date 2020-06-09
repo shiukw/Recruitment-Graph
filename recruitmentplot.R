@@ -83,6 +83,7 @@ recruitmentplot <- (p1 / data_table)
 recruitmentplot
 
 # Save your graph
+# Remmeber to change the name of the output file and the output directory!
 ggsave("YOUR_PLOT_NAME.jpeg", 
        recruitmentplot, 
        device="jpeg",
