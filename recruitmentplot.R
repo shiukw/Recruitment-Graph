@@ -1,6 +1,4 @@
 library(ggplot2)
-library(reshape2)
-library(grid)
 library(dplyr)
 library(patchwork)
 
@@ -24,9 +22,11 @@ ordered_dates <- c("Jan-18",
                   "Nov-18",
                    "Dec-18") 
 
+# Update the dataframes to follow the specific date order
 rc_total$date <- ordered(rc_total$date, levels = ordered_dates)
 rc_site$date <- ordered(rc_site$date, levels = ordered_dates)
 
+# Create the recruitment graph
 p1 <- rc_total %>% 
   group_by(type) %>% 
   mutate(cumn = cumsum(n)) %>% 
@@ -49,7 +49,7 @@ p1 <- rc_total %>%
         legend.box.background = element_rect(colour = "black"))
 p1
 
-# Set the order of the sites, starting from Obs
+# Set the order of the sites, starting from Target recruitment
 site_levels = c("Target recruitment",
                 "Actual recruitment",
                 "Monthly recruitment",
@@ -63,16 +63,13 @@ site_levels = c("Target recruitment",
                "Site H",
                "Site I")
 
-levels(rc_site$type)
-
-
-# Graph for table
+# Graph for recruitment numbers table
 data_table <- ggplot(rc_site, aes(x = date, y = factor(type), label = format(as.character(n), nsmall = 2, na.encode = F))) +
   geom_text(size = 3.5) + theme_bw() +
   theme(legend.position = "none") +
   theme(plot.margin = unit(c(-0.5,1, 0, 0.5), "lines")) + xlab(NULL) + ylab(NULL) + theme_classic() + 
   theme(legend.position = "none", axis.ticks = element_blank(), axis.text.x = element_blank()) +
-  scale_y_discrete(limits = rev(site_levels), expand=c(0.1,0)) + 
+  scale_y_discrete(limits = rev(site_levels), expand=c(0.1,0)) + # necessary to apply rev() function or else Site I will be on top
   geom_hline(yintercept=10.5, size=1) +
   theme(axis.line = element_blank(),
         axis.text.y = element_text(size=10))
@@ -80,15 +77,16 @@ data_table <- ggplot(rc_site, aes(x = date, y = factor(type), label = format(as.
 
 data_table
 
-
+# patchwork stitches p1 on top of data_table
 recruitmentplot <- (p1 / data_table)
 
 recruitmentplot
 
+# Save your graph
 ggsave("YOUR_PLOT_NAME.jpeg", 
        recruitmentplot, 
        device="jpeg",
-       path="ENTER_FILE_OUTPUT_PATH",
+       path="ENTER/FILE/OUTPUT/PATH",
        dpi=300,
        width=250,
        height = 300,
