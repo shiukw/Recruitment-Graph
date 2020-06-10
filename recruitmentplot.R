@@ -64,6 +64,7 @@ site_levels = c("Target recruitment",
                "Site I")
 
 # Graph for recruitment numbers table
+# na.encode = F is to make prevent missing entries from appearing as 0
 data_table <- ggplot(rc_site, aes(x = date, y = factor(type), label = format(as.character(n), nsmall = 2, na.encode = F))) +
   geom_text(size = 3.5) + theme_bw() +
   theme(legend.position = "none") +
